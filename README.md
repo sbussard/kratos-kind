@@ -44,6 +44,8 @@ cd kratos-selfservice-ui-node
 git checkout patch-1
 docker build -t kratos-custom-ui:latest .
 kind load docker-image kratos-custom-ui:latest
+cd ..
+kubectl apply -R -f manifests
 ```
 
 ## Delete kind cluster
