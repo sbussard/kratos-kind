@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kind-cluster-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /ui(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: kratos-selfservice-ui-node
+            port: 
+              number: 4455
+      - path: /kratos(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: kratos
+            port: 
+              number: 4433
+      - path: /mailslurper(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: mailslurper
+            port: 
+              number: 4436
