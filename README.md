@@ -8,6 +8,8 @@ From their GitHub, Ory Kratos is described as
 
 ## Prerequisites
 
+These instructions are for macOS but can easily be adapted to windows or linux using the package manager of your choice.
+
 `brew install kind k9s`
 
 ## Create kind cluster
@@ -35,10 +37,9 @@ Once the services have the `Running` status then go ahead and open [http://local
 ## Patch UI bug
 There is a bug in the ui portion and until [the PR](https://github.com/ory/kratos-selfservice-ui-node/pull/120/files) is merged, you may need to follow these steps to create a modified version of the ui docker container to get it to work right
 
-1. Inside `kratos-selfservice-ui-node.yaml`, replace `image: oryd/kratos-selfservice-ui-node:v0.6.0-alpha.2` with `image: kratos-custom-ui:latest`
-2. Create and load a custom container with the bugfix by running the following commands
-
 ```bash
+# Inside `kratos-selfservice-ui-node.yaml`, replace `image: oryd/kratos-selfservice-ui-node:v0.6.0-alpha.2` with `image: kratos-custom-ui:latest`
+sed -i '' 's/image: oryd\/kratos-selfservice-ui-node:v0.6.0-alpha.2/image: kratos-custom-ui:latest/g' ./manifests/kratos-selfservice-ui-node.yaml
 git clone git@github.com:sbussard/kratos-selfservice-ui-node.git
 cd kratos-selfservice-ui-node
 git checkout patch-1
