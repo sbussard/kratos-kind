@@ -26,18 +26,9 @@ spec:
       name: kratos-selfservice-ui-node
     spec:
       containers:
-        - env:
-            - name: BASE_URL
-              value: /ui
-            - name: KRATOS_ADMIN_URL
-              value: http://kratos:4434/
-            - name: KRATOS_BROWSER_URL
-              value: http://localhost/kratos/
-            - name: KRATOS_PUBLIC_URL
-              value: http://kratos:4433/
-            - name: PORT
-              value: "4455"
-            - name: SECURITY_MODE
+        - envFrom:
+            - configMapRef:
+                name: kratos-selfservice-ui-node-cm
           image: oryd/kratos-selfservice-ui-node:v0.6.0-alpha.2
           imagePullPolicy: IfNotPresent
           name: kratos-selfservice-ui-node

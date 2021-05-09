@@ -17,9 +17,9 @@ spec:
         - sql
         - -e
         - --yes
-      env:
-        - name: DSN
-          value: postgres://kratos:secret@postgresd:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4
+      envFrom:
+        - configMapRef:
+            name: kratos-db-cm
       image: oryd/kratos:v0.6.0-alpha.2
       name: kratos-migrate
       resources: {}

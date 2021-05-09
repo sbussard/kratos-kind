@@ -44,15 +44,11 @@ spec:
         io.kompose.service: postgresd
     spec:
       containers:
-        - env:
-            - name: POSTGRES_DB
-              value: kratos
-            - name: POSTGRES_PASSWORD
-              value: secret
-            - name: POSTGRES_USER
-              value: kratos
-          image: postgres:9.6
+        - image: postgres:9.6
           name: postgresd
+          envFrom:
+            - configMapRef:
+                name: postgresd-cm
           ports:
             - containerPort: 5432
           resources: {}
