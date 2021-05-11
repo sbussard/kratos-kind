@@ -20,7 +20,7 @@ kind create cluster --config=kind-cluster-config.yaml
 # Install NGINX controller for kind
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml
 # Wait for nginx ingress controller to start
-kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=90s
+kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
 # Apply app manifests (this is idempotent, so you can make changes and run this command again and the cluster will update itself accordingly)
 kubectl apply -R -f manifests
 # View k9s dashboard (ctrl + c to exit)
