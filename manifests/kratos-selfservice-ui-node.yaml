@@ -29,7 +29,7 @@ spec:
         - envFrom:
             - configMapRef:
                 name: kratos-selfservice-ui-node-cm
-          image: oryd/kratos-selfservice-ui-node:v0.6.0-alpha.2
+          image: oryd/kratos-selfservice-ui-node:v0.6.1-alpha.1
           imagePullPolicy: IfNotPresent
           name: kratos-selfservice-ui-node
           ports:

@@ -30,24 +30,7 @@ k9s
 
 ### Testing it out
 
-*Note: you may need to run the patch in the next section to fix a ui bug*
-
 Once the services have the `Running` status then go ahead and open [http://localhost/ui](http://localhost/ui)
-
-## Patch UI bug
-There is a bug in the ui portion and until [the PR](https://github.com/ory/kratos-selfservice-ui-node/pull/120/files) is merged, you may need to follow these steps to create a modified version of the ui docker container to get it to work right
-
-```bash
-# Inside `kratos-selfservice-ui-node.yaml`, replace `image: oryd/kratos-selfservice-ui-node:v0.6.0-alpha.2` with `image: kratos-custom-ui:latest`
-sed -i '' 's/image: oryd\/kratos-selfservice-ui-node:v0.6.0-alpha.2/image: kratos-custom-ui:latest/g' ./manifests/kratos-selfservice-ui-node.yaml
-git clone git@github.com:sbussard/kratos-selfservice-ui-node.git
-cd kratos-selfservice-ui-node
-git checkout patch-1
-docker build -t kratos-custom-ui:latest .
-kind load docker-image kratos-custom-ui:latest
-cd ..
-kubectl apply -R -f manifests
-```
 
 ## Delete kind cluster
 
